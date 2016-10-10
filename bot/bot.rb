@@ -10,7 +10,8 @@ class Bot < SlackRubyBot::Bot
     client.say(channel: data.channel, text: match['expression'])
   end
   
-  match(/^(.*)$/i) do |client, data, match|
-    client.say(channel: data.channel, text: "I'm going to post that to the internet! (#{match[:location]})")
+  match /^How is the weather in (?<location>\w*)\?$/ do |client, data, match|
+    client.say(channel: data.channel, text: "The weather in #{match[:location]} is nice.")
   end
+  
 end
