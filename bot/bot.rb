@@ -10,9 +10,9 @@ class Bot < SlackRubyBot::Bot
   #  client.say(channel: data.channel, text: match['expression'])
   #end
   
-  match /^(.*)$/ do |client, data, match|
-    Rails.cache.write next_id, { text: match['expression'] }
-    client.say(channel: data.channel, text: match['expression'])
+  match /^<message>(.*)$/ do |client, data, match|
+    Rails.cache.write next_id, { text: match['message'] }
+    client.say(channel: data.channel, "I love it when you say '#{match[:location]}'")
   end
   
 end
